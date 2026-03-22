@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  /* Aquí definimos los colores de OmniSelf para la v4 */
+  --color-brand-primary: #0D9488;
+  --color-brand-secondary: #6366F1;
+  --color-brand-accent: #F43F5E;
+  --color-brand-bg: #F8FAFC;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-text: #1E293B;
+
+  --radius-omnixl: 24px;
+}
+
+@utility btn-primary {
+  @apply bg-brand-primary text-white px-6 py-3 rounded-omnixl font-semibold 
+         hover:opacity-90 transition-all active:scale-95 shadow-md shadow-teal-100;
+}
+
+@utility os-card {
+  @apply bg-brand-surface border border-slate-100 rounded-omnixl p-6 
+         shadow-sm hover:shadow-md transition-shadow;
+}
+
+@utility os-input {
+  @apply w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl 
+         focus:ring-2 focus:ring-brand-primary focus:outline-none 
+         transition-all placeholder:text-slate-400;
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary font-bold;
+}
+
+body {
+  @apply bg-brand-bg text-brand-text antialiased;
+}
