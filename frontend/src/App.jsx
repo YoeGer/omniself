@@ -1,28 +1,20 @@
-import './index.css';
-import Header from './components/Header';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import ChatTraductor from './components/ChatTraductor';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import ChatTraductor from './components/AITranslator'; 
+import Navbar from './components/NavBar';
 
 function App() {
   return (
-    <div className="min-h-screen bg-brand-bg flex flex-col">
-      {/* 1. Parte Superior */}
-      <Header />
-      
-      {/* 2. Contenido Principal */}
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 flex flex-col">
-        <NavBar />
-        
-        {/* Aquí renderizamos el traductor, luego podremos intercambiarlo */}
-        <section className="flex-1 animate-in fade-in duration-700">
-          <ChatTraductor />
-        </section>
-      </main>
-
-      {/* 3. Parte Inferior */}
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/translator" element={<ChatTraductor />} />
+          {/* Aquí irán las futuras rutas como /nutrition o /biomarkers */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

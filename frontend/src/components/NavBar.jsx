@@ -1,29 +1,33 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  // En el futuro, estos links usarán "React Router" para cambiar de página
   const menuItems = [
-    { name: 'Traductor', icon: '🌐', active: true },
-    { name: 'Bio-Nutrición', icon: '🥗', active: false },
-    { name: 'Avatar IA', icon: '🤖', active: false },
-    { name: 'Meditación', icon: '🧘', active: false },
+    { name: 'Home', path: '/', icon: '🏠' },
+    { name: 'Traductor', path: '/translator', icon: '🌐' },
+    { name: 'Bio-Nutrición', path: '#', icon: '🥗', disabled: true },
+    { name: 'Avatar IA', path: '#', icon: '🤖', disabled: true },
   ];
 
   return (
-    <nav className="flex justify-center my-6">
-      <div className="bg-white/50 p-1.5 rounded-2xl border border-slate-200 flex gap-1 shadow-sm">
+    <nav className="sticky top-6 z-50 flex justify-center w-full px-4">
+      <div className="bg-slate-900/60 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 flex gap-1 shadow-2xl shadow-emerald-500/10">
         {menuItems.map((item) => (
-          <button
+          <NavLink
             key={item.name}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all flex items-center gap-2 ${
-              item.active 
-                ? 'bg-white shadow-sm text-brand-primary' 
-                : 'text-slate-500 hover:text-brand-primary hover:bg-white/50'
-            }`}
+            to={item.path}
+            className={({ isActive }) => `
+              px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2
+              ${item.disabled ? 'opacity-40 cursor-not-allowed' : ''}
+              ${isActive && !item.disabled
+                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]' 
+                : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'}
+            `}
+            onClick={(e) => item.disabled && e.preventDefault()}
           >
             <span>{item.icon}</span>
-            <span className="hidden sm:block">{item.name}</span>
-          </button>
+            <span className="hidden md:block">{item.name}</span>
+          </NavLink>
         ))}
       </div>
     </nav>
