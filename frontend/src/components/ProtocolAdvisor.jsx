@@ -1,141 +1,146 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import { getProtocolAdviceRequest } from "../services/api";
+
+const ReportRenderer = ({ content }) => {
+  return (
+    <div
+      className="w-full bg-slate-900/50 backdrop-blur-sm border border-white/5 p-8 rounded-omnixl 
+                    prose prose-invert max-w-none
+                    prose-headings:text-brand-primary prose-headings:font-bold
+                    prose-strong:text-brand-secondary prose-strong:font-bold
+                    prose-p:text-slate-300 prose-p:leading-relaxed
+                    prose-li:text-slate-400 prose-li:marker:text-brand-primary
+                    prose-hr:border-white/5"
+    >
+      <ReactMarkdown>{content}</ReactMarkdown>
+    </div>
+  );
+};
 
 const ProtocolAdvisor = () => {
   const [question, setQuestion] = useState("");
-  const [advice, setAdvice] = useState(null); // Almacenamos la respuesta estructurada
+  const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
 
   const handleConsult = async () => {
     if (!question.trim() || isLoading) return;
-
     setIsLoading(true);
-    setError(null);
-    // Opcional: setAdvice(null); // Si quieres que la respuesta anterior desaparezca mientras carga la nueva
+
+    const newUserMsg = { role: "user", content: question };
+    const historyToSend = messages.map((m) => ({
+      role: m.role,
+      content: m.content,
+    }));
 
     try {
-      const response = await getProtocolAdviceRequest(question);
+      const response = await getProtocolAdviceRequest(question, historyToSend);
       if (response.success) {
-        setAdvice(response.data);
-
-        // --- LA MEJORA DE UX AQUÍ ---
-        setQuestion(""); // Limpiamos el campo de texto automáticamente
-      } else {
-        throw new Error(response.message);
+        setMessages((prev) => [
+          ...prev,
+          newUserMsg,
+          { role: "assistant", content: response.data },
+        ]);
+        setQuestion("");
       }
     } catch (err) {
-      setError(
-        "Error de Sincronización: No se pudo conectar con el Núcleo de Protocolos.",
-      );
+      console.error("Error");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-[1fr,350px] gap-8 mt-12">
-      {/* PANEL PRINCIPAL: Resultados del Análisis */}
-      <main className="bg-slate-900/40 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-2xl shadow-cyan-500/5 flex flex-col min-h-[500px]">
-        <header className="border-b border-white/5 pb-5 mb-8 flex justify-between items-center">
+    <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-[1fr,380px] gap-8 mt-12">
+      {/* MAIN PANEL */}
+      <main className="bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] border border-white/10 p-10 shadow-2xl shadow-cyan-500/5 flex flex-col min-h-[600px]">
+        <header className="border-b border-white/5 pb-6 mb-8 flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
-              <span className="text-cyan-400">📊</span> Reporte de Optimización
-              Biométrica
+              <span className="text-brand-primary">📊</span> Reporte Biométrico
             </h1>
-            <p className="text-slate-400 text-sm mt-1">
-              Análisis basado en los Protocolos Oficiales de OmniSelf
+            <p className="text-slate-500 text-sm mt-1">
+              Núcleo de Inteligencia OmniSelf
             </p>
           </div>
           {isLoading && (
-            <div className="flex items-center gap-2 text-xs text-cyan-500 font-mono uppercase tracking-widest animate-pulse">
-              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce"></div>
-              Sincronizando...
+            <div className="flex items-center gap-2 text-[10px] text-brand-primary font-mono tracking-[0.2em] animate-pulse">
+              <div className="w-2 h-2 bg-brand-primary rounded-full"></div>
+              SINCRO...
             </div>
           )}
         </header>
 
-        {/* ÁREA DE RESULTADOS */}
-        <div className="flex-1 flex flex-col justify-center items-center text-center">
+        <div className="flex-1 overflow-y-auto space-y-6 pr-4 custom-scrollbar flex flex-col">
+          {messages.length === 0 && !isLoading && (
+            <div className="my-auto flex flex-col items-center opacity-20">
+              <div className="text-7xl mb-4">🔬</div>
+              <p className="font-mono text-xs tracking-widest uppercase">
+                Sistema listo para análisis
+              </p>
+            </div>
+          )}
+
+          {messages.map((msg, idx) => (
+            <div
+              key={idx}
+              className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"} animate-fade-in`}
+            >
+              {msg.role === "user" ? (
+                <div className="bg-cyan-500/10 border border-cyan-500/20 text-cyan-100 text-[13px] px-4 py-2 rounded-2xl rounded-tr-none max-w-[80%] shadow-lg shadow-cyan-900/10">
+                  {msg.content}
+                </div>
+              ) : (
+                <div className="w-full">
+                  <ReportRenderer content={msg.content} />
+                </div>
+              )}
+            </div>
+          ))}
+
           {isLoading && (
-            <div className="space-y-4 text-center">
-              <div className="text-6xl animate-spin-slow">🌀</div>
-              <p className="text-slate-500 font-mono text-sm">
-                Procesando consulta en el Núcleo de IA...
-              </p>
+            <div className="bg-slate-800/20 border border-white/5 p-8 rounded-omnixl animate-pulse text-slate-500 font-mono text-xs">
+              Generando reporte de optimización...
             </div>
           )}
-
-          {!isLoading && !advice && !error && (
-            <div className="max-w-md space-y-4">
-              <div className="text-6xl opacity-40">🔬</div>
-              <h3 className="text-xl font-semibold text-slate-300">
-                Esperando Consulta
-              </h3>
-              <p className="text-slate-500 text-sm">
-                Utilice el panel de control lateral para realizar una pregunta
-                sobre sus protocolos de suplementación o hábitos.
-              </p>
-            </div>
-          )}
-
-          {error && (
-            <div className="bg-red-500/10 border border-red-500/30 p-6 rounded-2xl text-red-400 max-w-lg">
-              <p className="font-bold text-sm">❌ {error}</p>
-            </div>
-          )}
-
-          {advice && (
-            <div className="w-full text-left bg-slate-800/30 p-8 rounded-2xl border border-white/5 space-y-6">
-              <p className="text-slate-200 text-base leading-relaxed whitespace-pre-line font-medium">
-                {advice}
-              </p>
-              <div className="border-t border-white/5 pt-4 text-xs text-slate-600 font-mono">
-                ID DE CONSULTA: OMNI-{Date.now().toString().slice(-6)} /
-                VERIFICADO POR NÚCLEO IA V1.0
-              </div>
-            </div>
-          )}
+          <div ref={scrollRef} />
         </div>
       </main>
 
-      {/* PANEL LATERAL: Control de Consulta */}
+      {/* SIDE CONTROL */}
       <aside className="space-y-6">
-        <div className="bg-slate-900 border border-white/10 p-6 rounded-3xl shadow-xl">
-          <h3 className="text-lg font-bold text-slate-100 mb-5 flex items-center gap-2">
-            <span className="text-emerald-400">⚡</span> Panel de Control
+        <div className="os-card bg-slate-900 border border-white/10 shadow-xl">
+          <h3 className="text-lg font-bold text-slate-100 mb-6 flex items-center gap-2">
+            <span className="text-brand-secondary">⚡</span> Control
           </h3>
           <textarea
-            className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-slate-200 placeholder:text-slate-600 outline-none focus:border-cyan-500/50 transition-colors resize-none text-sm mb-4"
-            placeholder="Ej: ¿Cuándo debo tomar el Magnesio?"
-            rows="5"
+            className="os-input bg-slate-950/50 border-white/5 focus:border-brand-primary/40 min-h-[150px] text-sm leading-relaxed"
+            placeholder="Introduce consulta de protocolo..."
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             disabled={isLoading}
           />
           <button
             onClick={handleConsult}
-            className={`w-full py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 ${
-              isLoading
-                ? "bg-slate-800 text-slate-500 cursor-not-allowed"
-                : "bg-gradient-to-r from-cyan-600 to-emerald-600 text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] active:scale-95"
-            }`}
+            className="btn-primary w-full mt-4"
             disabled={isLoading}
           >
-            {isLoading ? "Consultando..." : "Iniciar Análisis"}
+            {isLoading ? "Procesando..." : "Ejecutar Análisis"}
           </button>
-        </div>
 
-        {/* Sugerencias de búsqueda (Nivel Senior: UX Mejorada) */}
-        <div className="bg-slate-900/60 border border-white/10 p-5 rounded-2xl text-xs text-slate-500 space-y-3">
-          <p className="font-semibold text-slate-400 uppercase tracking-wider">
-            Consultas Sugeridas:
-          </p>
-          <ul className="space-y-2 list-disc list-inside">
-            <li>¿Cuál es la dosis de Creatina?</li>
-            <li>¿Qué suplementos ayudan al sueño?</li>
-            <li>¿Hay advertencias para el NMN?</li>
-          </ul>
+          {messages.length > 0 && (
+            <button
+              onClick={() => setMessages([])}
+              className="w-full mt-6 text-[9px] text-slate-600 hover:text-red-500 transition-colors tracking-[0.3em] font-mono"
+            >
+              [ COMENZAR NUEVA CONSULTA ]
+            </button>
+          )}
         </div>
       </aside>
     </div>

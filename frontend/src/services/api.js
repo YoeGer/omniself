@@ -22,14 +22,14 @@ export const translateTextRequest = async (text, targetLanguage) => {
   }
 };
 
-export const getProtocolAdviceRequest = async (question) => {
+export const getProtocolAdviceRequest = async (question, history = []) => {
   try {
-    const response = await fetch(`${API_URL}/protocols/advice`, { // URL del backend
+    const response = await fetch(`${API_URL}/protocols/advice`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ question }), // Enviamos la pregunta
+      body: JSON.stringify({ question, history}), 
     });
 
     if (!response.ok) {
@@ -37,7 +37,7 @@ export const getProtocolAdviceRequest = async (question) => {
     }
 
     const data = await response.json();
-    return data; // Retorna { success: true, data: "Texto de la IA..." }
+    return data; 
   } catch (error) {
     console.error("Error en getProtocolAdviceRequest:", error);
     throw error;

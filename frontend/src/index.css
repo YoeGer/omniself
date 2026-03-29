@@ -1,35 +1,32 @@
 @import "tailwindcss";
 
+
 @theme {
-  /* Aquí definimos los colores de OmniSelf para la v4 */
-  --color-brand-primary: #0D9488;
-  --color-brand-secondary: #6366F1;
-  --color-brand-accent: #F43F5E;
-  --color-brand-bg: #F8FAFC;
-  --color-brand-surface: #FFFFFF;
-  --color-brand-text: #1E293B;
+  --color-brand-primary: #06b6d4; /* Cian 500 */
+  --color-brand-secondary: #10b981; /* Esmeralda 500 */
+  --color-brand-bg: #020617; /* Slate 950 */
+  --color-brand-surface: #0f172a; /* Slate 900 */
+  --color-brand-text: #f8fafc; /* Slate 50 */
 
   --radius-omnixl: 24px;
 }
 
-@utility btn-primary {
-  @apply bg-brand-primary text-white px-6 py-3 rounded-omnixl font-semibold 
-         hover:opacity-90 transition-all active:scale-95 shadow-md shadow-teal-100;
-}
-
+/* Ajustamos tus utilidades para que sean oscuras */
 @utility os-card {
-  @apply bg-brand-surface border border-slate-100 rounded-omnixl p-6 
-         shadow-sm hover:shadow-md transition-shadow;
+  @apply bg-brand-surface border border-white/10 rounded-omnixl p-6 
+         shadow-2xl shadow-cyan-500/5 transition-all;
 }
 
 @utility os-input {
-  @apply w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl 
-         focus:ring-2 focus:ring-brand-primary focus:outline-none 
-         transition-all placeholder:text-slate-400;
+  @apply w-full p-4 bg-slate-950/50 border border-white/10 rounded-2xl 
+         focus:ring-2 focus:ring-brand-primary/50 focus:outline-none 
+         transition-all placeholder:text-slate-600 text-slate-200;
 }
 
-@utility text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary font-bold;
+@utility btn-primary {
+  @apply bg-gradient-to-r from-cyan-600 to-emerald-600 text-white px-6 py-3 
+         rounded-omnixl font-bold uppercase tracking-wider
+         hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all active:scale-95;
 }
 
 body {
