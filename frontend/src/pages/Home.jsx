@@ -9,6 +9,13 @@ const features = [
     color: "border-emerald-500/30 hover:border-emerald-500"
   },
   {
+    title: "Protocol Advisor",
+    desc: "Consulta tu base de conocimiento personalizada sobre suplementación y optimización.",
+    path: "/protocols", 
+    icon: "🔬",
+    color: "border-cyan-500/30 hover:border-cyan-500 shadow-cyan-500/5"
+  },
+  {
     title: "Bio-Nutrition",
     desc: "Próximamente: Analiza tu dieta según tu tipo de sangre.",
     path: "#",

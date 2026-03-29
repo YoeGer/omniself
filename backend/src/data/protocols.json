@@ -1,0 +1,92 @@
+[
+  {
+    "id": "PROT-001",
+    "name": "Magnesio (Glicinato)",
+    "goal": "Relajación muscular y calidad de sueño profundo.",
+    "timing": "30-60 minutos antes de dormir.",
+    "dosage": "200-400mg diarios.",
+    "warnings": "Evitar tomar junto a antibióticos. Puede causar somnolencia.",
+    "category": "Sueño"
+  },
+  {
+    "id": "PROT-002",
+    "name": "Cafeína + L-Teanina",
+    "goal": "Energía sostenida sin nerviosismo (foco cognitivo).",
+    "timing": "Mañana o antes de tareas de alta concentración.",
+    "dosage": "100mg Cafeína / 200mg Teanina.",
+    "warnings": "No consumir después de las 14:00 para no afectar el sueño.",
+    "category": "Energía"
+  },
+  {
+    "id": "PROT-003",
+    "name": "Vitamina D3 + K2",
+    "goal": "Salud ósea e inmunidad.",
+    "timing": "Con la comida más grasa del día (almuerzo).",
+    "dosage": "2000-5000 UI.",
+    "warnings": "Consultar niveles en sangre antes de dosis altas.",
+    "category": "Inmunidad"
+  },
+  {
+    "id": "PROT-004",
+    "name": "Creatina Monohidrato",
+    "goal": "Recuperación muscular y función cognitiva.",
+    "timing": "Cualquier momento del día, preferiblemente con carbohidratos.",
+    "dosage": "3-5g diarios.",
+    "warnings": "Mantener una hidratación alta constante.",
+    "category": "Rendimiento"
+  },
+  {
+    "id": "PROT-005",
+    "name": "Omega-3 (EPA/DHA)",
+    "goal": "Salud cardiovascular y reducción de inflamación cerebral.",
+    "timing": "Con el desayuno o almuerzo.",
+    "dosage": "1000-2000mg de EPA/DHA combinados.",
+    "warnings": "Puede interactuar con medicamentos anticoagulantes.",
+    "category": "Longevidad"
+  },
+  {
+    "id": "PROT-006",
+    "name": "Ashwagandha (KSM-66)",
+    "goal": "Reducción de cortisol y gestión del estrés crónico.",
+    "timing": "Tarde o noche.",
+    "dosage": "300-600mg.",
+    "warnings": "No se recomienda su uso continuo por más de 3 meses sin descanso.",
+    "category": "Estrés"
+  },
+  {
+    "id": "PROT-007",
+    "name": "Melatonina (Dosis Baja)",
+    "goal": "Regulación del ritmo circadiano y jet lag.",
+    "timing": "30 minutos antes de apagar las luces.",
+    "dosage": "0.3mg - 1mg.",
+    "warnings": "Dosis altas pueden causar pesadillas o fatiga matutina.",
+    "category": "Sueño"
+  },
+  {
+    "id": "PROT-008",
+    "name": "Electrolitos (Sodio/Potasio/Magnesio)",
+    "goal": "Hidratación celular y prevención de fatiga en ayunas.",
+    "timing": "Al despertar o durante el entrenamiento intenso.",
+    "dosage": "1 sobre disuelto en 500ml de agua.",
+    "warnings": "Personas con hipertensión deben moderar el sodio.",
+    "category": "Rendimiento"
+  },
+  {
+    "id": "PROT-009",
+    "name": "NMN (Nicotinamida Mononucleótido)",
+    "goal": "Precursor de NAD+ para reparación celular y energía.",
+    "timing": "Ayunas por la mañana.",
+    "dosage": "250-500mg.",
+    "warnings": "Uso avanzado. Consultar con especialista en longevidad.",
+    "category": "Longevidad"
+  },
+  {
+    "id": "PROT-010",
+    "name": "Zinc + Cobre",
+    "goal": "Soporte hormonal y salud de la piel.",
+    "timing": "Con la cena, evitar el estómago vacío para prevenir náuseas.",
+    "dosage": "15-30mg Zinc / 1-2mg Cobre.",
+    "warnings": "El zinc a largo plazo compite con la absorción del cobre.",
+    "category": "Inmunidad"
+  }
+]

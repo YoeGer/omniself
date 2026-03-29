@@ -5,6 +5,7 @@ const Navbar = () => {
   const menuItems = [
     { name: 'Home', path: '/', icon: '🏠' },
     { name: 'Traductor', path: '/translator', icon: '🌐' },
+    { name: 'Protocolos', path: '/protocols', icon: '🔬' },
     { name: 'Bio-Nutrición', path: '#', icon: '🥗', disabled: true },
     { name: 'Avatar IA', path: '#', icon: '🤖', disabled: true },
   ];

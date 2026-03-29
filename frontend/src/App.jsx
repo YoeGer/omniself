@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ChatTraductor from './components/AITranslator'; 
+import ProtocolAdvisor from './components/ProtocolAdvisor';
 import Navbar from './components/NavBar';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/translator" element={<ChatTraductor />} />
+          <Route path="/protocols" element={<ProtocolAdvisor />} />
           {/* Aquí irán las futuras rutas como /nutrition o /biomarkers */}
         </Routes>
       </div>
