@@ -22,8 +22,6 @@ OmniSelf no es solo una app de seguimiento; es un consultor 24/7. Integra desde 
 
 ## 🛠️ Stack Tecnológico (Fullstack JS)
 
-Este proyecto demuestra la potencia de **JavaScript** para soluciones de IA de extremo a extremo:
-
 * **Frontend:** React.js / Next.js (Interfaz reactiva, dashboard dinámico).
 * **Backend:** Node.js & Express (Orquestación de APIs y lógica de negocio).
 * **IA Engine:** OpenAI SDK:
@@ -33,17 +31,6 @@ Este proyecto demuestra la potencia de **JavaScript** para soluciones de IA de e
     * **TTS / Whisper:** Narración y procesamiento de voz.
 * **Base de Datos:** MongoDB / PostgreSQL (Gestión de perfiles de usuario).
 * **Control de Versiones:** Git & GitHub.
-
----
-
-## 🚀 Hoja de Ruta (Roadmap)
-
-- [ ] Configuración del entorno y arquitectura Base (Node/Express).
-- [ ] Implementación del Asistente Maestro con Threads de OpenAI.
-- [ ] Integración del generador de dietas y lógica nutricional.
-- [ ] Desarrollo del sistema de narración para meditaciones.
-- [ ] Lanzamiento del generador de avatares y módulo de redes sociales.
-- [ ] Pulido de UI/UX y despliegue final.
 
 ---
 
