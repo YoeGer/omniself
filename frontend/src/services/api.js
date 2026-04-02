@@ -22,14 +22,14 @@ export const translateTextRequest = async (text, targetLanguage) => {
   }
 };
 
-export const getProtocolAdviceRequest = async (question, history = []) => {
+export const getProtocolAdviceRequest = async (question, threadId = null) => {
   try {
     const response = await fetch(`${API_URL}/protocols/advice`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ question, history}), 
+      body: JSON.stringify({ question, threadId}), 
     });
 
     if (!response.ok) {

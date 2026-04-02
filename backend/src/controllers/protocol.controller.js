@@ -2,7 +2,7 @@ import { getProtocolAdvice } from '../services/protocol.service.js';
 
 export const getAdvice = async (req, res) => {
   try {
-    const { question, history } = req.body;
+    const { question, threadId} = req.body;
 
     if (!question) {
       return res.status(400).json({ 
@@ -11,7 +11,7 @@ export const getAdvice = async (req, res) => {
       });
     }
 
-    const advice = await getProtocolAdvice(question, history || []);
+    const advice = await getProtocolAdvice(question, threadId);
     
     res.status(200).json({
       success: true,

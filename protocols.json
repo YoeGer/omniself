@@ -1,0 +1,92 @@
+[
+  {
+    "id": "magnesium-glycinate",
+    "name": "Magnesio (Glicinato)",
+    "category": "Relajación y Sueño",
+    "dosage": "200-400mg diarios",
+    "timing": "30-60 minutos antes de dormir",
+    "benefits": ["Relajación muscular", "Mejora sueño REM", "Reduce cortisol"],
+    "warnings": "Evitar con antibióticos. Puede causar somnolencia."
+  },
+  {
+    "id": "creatine-monohydrate",
+    "name": "Creatina Monohidrato",
+    "category": "Rendimiento y Cognición",
+    "dosage": "3-5g diarios",
+    "timing": "Cualquier momento, con agua",
+    "benefits": ["Resíntesis de ATP", "Fuerza muscular", "Hidratación celular"],
+    "warnings": "Asegurar ingesta de agua. Consultar si hay patología renal."
+  },
+  {
+    "id": "omega-3-fish-oil",
+    "name": "Omega-3 (EPA/DHA)",
+    "category": "Salud Cardiovascular y Cerebral",
+    "dosage": "2000mg combinados (EPA+DHA)",
+    "timing": "Con una comida principal",
+    "benefits": ["Reduce inflamación sistémica", "Salud de membranas neuronales", "Perfil lipídico"],
+    "warnings": "Precaución si se usan anticoagulantes. Calidad IFOS recomendada."
+  },
+  {
+    "id": "ashwagandha-ksm66",
+    "name": "Ashwagandha (KSM-66)",
+    "category": "Adaptógeno / Estrés",
+    "dosage": "300-600mg diarios",
+    "timing": "Mañana o noche (según tolerancia)",
+    "benefits": ["Reducción de estrés percibido", "Optimización de testosterona", "Equilibrio del eje HPA"],
+    "warnings": "No usar en hipertiroidismo o enfermedades autoinmunes sin supervisión."
+  },
+  {
+    "id": "caffeine-l-theanine",
+    "name": "Cafeína + L-Teanina",
+    "category": "Enfoque Cognitivo",
+    "dosage": "100mg Cafeína / 200mg Teanina",
+    "timing": "Mañana o pre-trabajo enfocado",
+    "benefits": ["Alerta sin ansiedad", "Mejora la atención sostenida", "Reduce el 'crash' de energía"],
+    "warnings": "Evitar después de las 14:00 para no afectar el sueño."
+  },
+  {
+    "id": "curcumin-extract",
+    "name": "Cúrcuma (Curcumina + Piperina)",
+    "category": "Antiinflamatorio",
+    "dosage": "500-1000mg",
+    "timing": "Con comida (grasa)",
+    "benefits": ["Potente antiinflamatorio natural", "Salud articular", "Antioxidante"],
+    "warnings": "La piperina es necesaria para la absorción. Puede teñir superficies."
+  },
+  {
+    "id": "zinc-picolinate",
+    "name": "Zinc (Picolinato)",
+    "category": "Inmunidad y Hormonal",
+    "dosage": "15-30mg diarios",
+    "timing": "Con comida (evitar estómago vacío)",
+    "benefits": ["Función inmune óptima", "Producción hormonal", "Salud de la piel"],
+    "warnings": "No exceder 40mg a largo plazo (puede causar deficiencia de cobre)."
+  },
+  {
+    "id": "berberine-hcl",
+    "name": "Berberina",
+    "category": "Metabolismo / Longevidad",
+    "dosage": "500mg, 2 a 3 veces al día",
+    "timing": "30 minutos antes de las comidas",
+    "benefits": ["Sensibilidad a la insulina", "Control de glucosa en sangre", "Activación de AMPK"],
+    "warnings": "Efecto similar a la Metformina. Puede causar malestar gastrointestinal inicial."
+  },
+  {
+    "id": "rhodiola-rosea",
+    "name": "Rhodiola Rosea",
+    "category": "Adaptógeno / Fatiga",
+    "dosage": "200-400mg",
+    "timing": "En ayunas por la mañana",
+    "benefits": ["Reduce fatiga mental por estrés", "Mejora el estado de ánimo", "Resistencia física"],
+    "warnings": "Puede ser estimulante. No usar si se padece trastorno bipolar."
+  },
+  {
+    "id": "vitamin-b-complex",
+    "name": "Complejo B (Metilado)",
+    "category": "Energía y Nervios",
+    "dosage": "1 cápsula diaria",
+    "timing": "Con el desayuno",
+    "benefits": ["Metabolismo energético", "Salud del sistema nervioso", "Metilación óptima"],
+    "warnings": "Elegir formas metiladas (Metilcobalamina/5-MTHF) para mejor absorción."
+  }
+]

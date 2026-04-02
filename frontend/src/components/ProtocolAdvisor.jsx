@@ -21,6 +21,7 @@ const ReportRenderer = ({ content }) => {
 const ProtocolAdvisor = () => {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
+  const [threadId, setThreadId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef(null);
 
@@ -30,23 +31,23 @@ const ProtocolAdvisor = () => {
 
   const handleConsult = async () => {
     if (!question.trim() || isLoading) return;
-    setIsLoading(true);
 
-    const newUserMsg = { role: "user", content: question };
-    const historyToSend = messages.map((m) => ({
-      role: m.role,
-      content: m.content,
-    }));
+    setIsLoading(true);
+    const userText = question;
+    setQuestion("");
+
+    setMessages((prev) => [...prev, { role: "user", content: userText }]);
 
     try {
-      const response = await getProtocolAdviceRequest(question, historyToSend);
+      const response = await getProtocolAdviceRequest(userText, threadId);
+
       if (response.success) {
+        if (!threadId) setThreadId(response.data.threadId);
+
         setMessages((prev) => [
           ...prev,
-          newUserMsg,
-          { role: "assistant", content: response.data },
+          { role: "assistant", content: response.data.reply },
         ]);
-        setQuestion("");
       }
     } catch (err) {
       console.error("Error");
@@ -57,7 +58,6 @@ const ProtocolAdvisor = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-[1fr,380px] gap-8 mt-12">
-      {/* MAIN PANEL */}
       <main className="bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] border border-white/10 p-10 shadow-2xl shadow-cyan-500/5 flex flex-col min-h-[600px]">
         <header className="border-b border-white/5 pb-6 mb-8 flex justify-between items-center">
           <div>
@@ -111,8 +111,6 @@ const ProtocolAdvisor = () => {
           <div ref={scrollRef} />
         </div>
       </main>
-
-      {/* SIDE CONTROL */}
       <aside className="space-y-6">
         <div className="os-card bg-slate-900 border border-white/10 shadow-xl">
           <h3 className="text-lg font-bold text-slate-100 mb-6 flex items-center gap-2">
