@@ -1,45 +1,40 @@
-const API_URL = import.meta.env.VITE_API_URL;
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 export const translateTextRequest = async (text, targetLanguage) => {
   try {
-    const response = await fetch(`${API_URL}/translate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text, targetLanguage }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Error en la respuesta del servidor');
-    }
-
-    const data = await response.json();
-    return data; 
+    const response = await api.post('/translate', { text, targetLanguage });
+    return response.data;
   } catch (error) {
-    console.error("Error en translateTextRequest:", error);
+    console.error("Error en translateTextRequest:", error.response?.data || error.message);
     throw error;
   }
 };
 
 export const getProtocolAdviceRequest = async (question, threadId = null) => {
   try {
-    const response = await fetch(`${API_URL}/protocols/advice`, { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ question, threadId}), 
-    });
-
-    if (!response.ok) {
-      throw new Error('Error en la respuesta del servidor de protocolos');
-    }
-
-    const data = await response.json();
-    return data; 
+    const response = await api.post('/protocols/advice', { question, threadId });
+    return response.data;
   } catch (error) {
-    console.error("Error en getProtocolAdviceRequest:", error);
+    console.error("Error en getProtocolAdviceRequest:", error.response?.data || error.message);
     throw error;
   }
 };
+
+export const generateAvatarRequest = async (userData) => {
+  try {
+    const response = await api.post('/avatar/generate', userData);
+    return response.data;
+  } catch (error) {
+    console.error("Error en generateAvatarRequest:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
+export default api;

@@ -1,35 +1,26 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const menuItems = [
-    { name: 'Home', path: '/', icon: '🏠' },
-    { name: 'Traductor', path: '/translator', icon: '🌐' },
-    { name: 'Protocolos', path: '/protocols', icon: '🔬' },
-    { name: 'Bio-Nutrición', path: '#', icon: '🥗', disabled: true },
-    { name: 'Avatar IA', path: '#', icon: '🤖', disabled: true },
-  ];
-
+const Navbar = ({ avatarUrl, onOpenAvatar }) => {
   return (
-    <nav className="sticky top-6 z-50 flex justify-center w-full px-4">
-      <div className="bg-slate-900/60 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 flex gap-1 shadow-2xl shadow-emerald-500/10">
-        {menuItems.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.path}
-            className={({ isActive }) => `
-              px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2
-              ${item.disabled ? 'opacity-40 cursor-not-allowed' : ''}
-              ${isActive && !item.disabled
-                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]' 
-                : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'}
-            `}
-            onClick={(e) => item.disabled && e.preventDefault()}
+    <nav className="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link to="/" className="text-xl font-bold tracking-tighter text-emerald-400">
+          OMNISELF<span className="text-white font-light">.BIO</span>
+        </Link>
+        
+        <div className="flex items-center gap-6">
+          <Link to="/protocols" className="text-xs font-mono text-slate-400 hover:text-white uppercase tracking-widest">Protocolos</Link>
+          <button 
+            onClick={onOpenAvatar}
+            className="w-10 h-10 rounded-full border border-white/10 overflow-hidden bg-slate-900 flex items-center justify-center hover:border-emerald-500/50 transition-colors"
           >
-            <span>{item.icon}</span>
-            <span className="hidden md:block">{item.name}</span>
-          </NavLink>
-        ))}
+            {avatarUrl ? (
+              <img src={avatarUrl} alt="Nav Avatar" className="w-full h-full object-cover" />
+            ) : (
+              <span className="text-lg">👤</span>
+            )}
+          </button>
+        </div>
       </div>
     </nav>
   );

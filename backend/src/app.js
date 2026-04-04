@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import translateRoutes from './routes/translate.routes.js';
 import protocolRoutes from './routes/protocol.routes.js';
+import avatarRoutes from './routes/avatar.routes.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json()); // Formato: permite recibir datos en JSON
 // Todas las rutas de traducción empezarán con /api
 app.use('/api/translate', translateRoutes); 
 app.use('/api/protocols', protocolRoutes);
+app.use('/api/avatar', avatarRoutes);
 
 // --- MANEJO DE ERRORES GLOBAL  ---
 app.use((err, req, res, next) => {
