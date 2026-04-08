@@ -5,6 +5,7 @@ import ChatTraductor from './components/AITranslator';
 import ProtocolAdvisor from './components/ProtocolAdvisor';
 import Navbar from './components/NavBar';
 import AvatarGenerator from './components/AvatarGenerator';
+import BioNutrition from './components/BioNutrition';
 
 function App() {
   const [avatarUrl, setAvatarUrl] = useState(() => {
@@ -37,6 +38,7 @@ function App() {
           />
           <Route path="/translator" element={<ChatTraductor />} />
           <Route path="/protocols" element={<ProtocolAdvisor />} />
+          <Route path="/nutrition" element={<BioNutrition />} />
         </Routes>
         {showAvatarModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-4">

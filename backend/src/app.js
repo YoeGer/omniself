@@ -3,6 +3,8 @@ import cors from 'cors';
 import translateRoutes from './routes/translate.routes.js';
 import protocolRoutes from './routes/protocol.routes.js';
 import avatarRoutes from './routes/avatar.routes.js';
+import nutritionRoutes from './routes/nutrition.routes.js';
+import voiceRoutes from './routes/voice.routes.js';
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(express.json()); // Formato: permite recibir datos en JSON
 app.use('/api/translate', translateRoutes); 
 app.use('/api/protocols', protocolRoutes);
 app.use('/api/avatar', avatarRoutes);
+app.use('/api/nutrition', nutritionRoutes);
+app.use('/api/voice', voiceRoutes);
 
 // --- MANEJO DE ERRORES GLOBAL  ---
 app.use((err, req, res, next) => {
