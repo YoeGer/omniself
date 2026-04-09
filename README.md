@@ -45,17 +45,21 @@ Este proyecto demuestra solvencia técnica en la resolución de problemas comple
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/omniself.git](https://github.com/tu-usuario/omniself.git)
+    git clone https://github.com/YoeGer/omniself.git
     ```
 2.  **Instala las dependencias:**
     ```bash
-    # En el root, frontend y backend
-    npm install
+    # Instalar dependencias del backend
+    cd backend && npm install
+
+    # Instalar dependencias del frontend
+    cd ../frontend && npm install
     ```
 3.  **Configura las variables de entorno:**
     Crea un archivo `.env` en la carpeta `backend` con tu `OPENAI_API_KEY`.
 4.  **Inicia el entorno de desarrollo:**
     ```bash
+    # Ejecuta desde la raíz si tienes un script configurado o en cada carpeta
     npm run dev
     ```
 
