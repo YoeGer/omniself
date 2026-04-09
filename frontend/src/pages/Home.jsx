@@ -25,6 +25,13 @@ const features = [
     color:
       "border-emerald-500/30 hover:border-emerald-500 shadow-emerald-500/5",
   },
+  {
+    title: "Social Sync",
+    desc: "Transforma tus ideas en publicaciones de alto impacto para tus redes sociales.",
+    path: "/social",
+    icon: "📱",
+    color: "border-blue-500/30 hover:border-blue-500 shadow-blue-500/5",
+  },
 ];
 
 const Home = ({ hasAvatar, avatarUrl, onOpenAvatar }) => {
@@ -116,18 +123,20 @@ const Home = ({ hasAvatar, avatarUrl, onOpenAvatar }) => {
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {features.map((f, i) => (
           <Link
             key={i}
             to={f.path}
-            className={`p-6 rounded-2xl border bg-slate-900/50 backdrop-blur-xl transition-all duration-300 group ${f.color}`}
+            className={`p-6 rounded-2xl border bg-slate-900/50 backdrop-blur-xl transition-all duration-300 group ${f.color} flex flex-col h-full`}
           >
             <span className="text-4xl mb-4 block">{f.icon}</span>
             <h3 className="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">
               {f.title}
             </h3>
-            <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+            <p className="text-slate-400 text-sm leading-relaxed flex-grow">
+              {f.desc}
+            </p>
           </Link>
         ))}
       </div>

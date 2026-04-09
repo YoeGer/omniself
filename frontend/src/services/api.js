@@ -81,4 +81,14 @@ export const fetchDailyMantra = async () => {
   }
 };
 
+export const generateSocialPost = async (postData) => {
+  try {
+    const response = await api.post('/social/generate', postData);
+    return response.data.post;
+  } catch (error) {
+    console.error("Error al generar el post social:", error);
+    throw error;
+  }
+};
+
 export default api;

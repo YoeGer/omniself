@@ -8,6 +8,7 @@ const Navbar = ({ avatarUrl, onOpenAvatar }) => {
   const navLinks = [
     { name: 'Dashboard', path: '/' }, 
     { name: 'Traductor', path: '/translator' },
+    { name: 'Social', path: '/social' },
     { name: 'Protocolos', path: '/protocols' },
     { name: 'Nutrición', path: '/nutrition' },
   ];
